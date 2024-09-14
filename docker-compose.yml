@@ -1,0 +1,19 @@
+version: '20.0'
+services:
+  api1:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo1
+  mongo1:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=12345
+    volumes:
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:
